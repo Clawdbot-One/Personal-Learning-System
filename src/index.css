@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Instrument Sans", "Noto Sans SC", sans-serif;
+  --font-sans: "Work Sans", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #f8f9fb;
+  color: #1a1f36;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #1a1f36;
+  line-height: 1.25;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd0d9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9aa3b2;
+}
+
+/* 选中文本 */
+::selection {
+  background: #2563eb;
+  color: #fff;
+}
+
+@layer components {
+  /* 卡片 */
+  .lf-card {
+    @apply bg-white border border-ink-200 rounded-xl shadow-card transition-all duration-200;
+  }
+  .lf-card-hover {
+    @apply hover:shadow-cardhover hover:border-brand-300;
+  }
+
+  /* 按钮 */
+  .lf-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .lf-btn-primary {
+    @apply lf-btn bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.98] shadow-sm;
+  }
+  .lf-btn-secondary {
+    @apply lf-btn bg-white border border-ink-200 text-ink-800 hover:bg-ink-50 hover:border-ink-300;
+  }
+  .lf-btn-gold {
+    @apply lf-btn bg-gold-500 text-white hover:bg-gold-600 active:scale-[0.98] shadow-sm;
+  }
+  .lf-btn-ghost {
+    @apply lf-btn text-ink-600 hover:bg-ink-100 hover:text-ink-900;
+  }
+
+  /* 输入框 */
+  .lf-input {
+    @apply w-full px-3.5 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 placeholder-ink-400
+      focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all duration-200;
+  }
+
+  /* 标签 */
+  .lf-badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium;
+  }
+
+  /* 渐变文字 */
+  .lf-gradient-text {
+    @apply bg-gradient-to-r from-brand-600 to-gold-500 bg-clip-text text-transparent;
+  }
+
+  /* 页面标题区 */
+  .lf-page-header {
+    @apply mb-6;
+  }
+  .lf-page-title {
+    @apply text-2xl font-bold text-ink-900 font-display;
+  }
+  .lf-page-subtitle {
+    @apply text-sm text-ink-500 mt-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* 隐藏滚动条但保持可滚动 */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
