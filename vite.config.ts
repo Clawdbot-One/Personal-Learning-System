@@ -25,6 +25,14 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
+    watch: {
+      // 排除 pnpm-store / node_modules 中的大量内容寻址文件，避免 inotify ENOSPC
+      ignored: [
+        '**/.pnpm-store/**',
+        '**/node_modules/.pnpm/**/files/**',
+        '**/node_modules/.cache/**',
+      ],
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
