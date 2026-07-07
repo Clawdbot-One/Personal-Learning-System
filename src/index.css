@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #f8f9fb;
+    --ink: #1a1f36;
+  }
+
+  html {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* 自定义滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd0d9;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9aa3b2;
+  }
+}
+
+@layer components {
+  /* 卡片基础样式 */
+  .lf-card {
+    @apply bg-white rounded-xl border border-ink-200 shadow-card transition-all duration-200;
+  }
+  .lf-card:hover {
+    @apply shadow-cardHover;
+  }
+
+  /* 按钮样式 */
+  .lf-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .lf-btn-primary {
+    @apply lf-btn bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.98] shadow-sm;
+  }
+  .lf-btn-secondary {
+    @apply lf-btn bg-ink-100 text-ink-700 hover:bg-ink-200 active:scale-[0.98];
+  }
+  .lf-btn-ghost {
+    @apply lf-btn text-ink-600 hover:bg-ink-100 hover:text-ink-900;
+  }
+
+  /* 输入框样式 */
+  .lf-input {
+    @apply w-full px-3.5 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 placeholder-ink-400
+      focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all;
+  }
+
+  /* 标签样式 */
+  .lf-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+
+  /* 渐变文字 */
+  .lf-gradient-text {
+    @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
+  }
+}
+
+/* Agent 回复的 markdown 简易渲染 */
+.lf-markdown strong {
+  @apply font-semibold text-ink-900;
+}
+.lf-markdown p {
+  @apply mb-2;
+}
+.lf-markdown p:last-child {
+  @apply mb-0;
+}
