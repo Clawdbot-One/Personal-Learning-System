@@ -1,0 +1,28 @@
+# LearnFlow — full-stack orchestration
+# Usage:  docker compose up --build
+services:
+  backend:
+    build: ./backend
+    container_name: learnflow-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=sqlite:///./learnflow.db
+      - SECRET_KEY=${SECRET_KEY:-learnflow-change-me-in-production-32bytes}
+      - CORS_ORIGINS=http://localhost,http://localhost:5173,http://127.0.0.1
+    volumes:
+      - backend-data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: learnflow-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-data:
